@@ -3,14 +3,20 @@
 
     contract TasksContract {  // Tares en Contrato
         uint public taskCounter = 0 ;
-        // Creación de Tipo de dato    
+
+        constructor(){
+            createTask("mi primer tarea de ejemplo","Tengo que hacer alguito");
+        }
+
+
+        // Creación de Tipo de dato                    
         struct Task{
             uint256 id;
             string title;
             string description;
             bool done;
             uint256 createdAt;
-        }
+        } 
         // Declaracción de funcion (Tipp de Datos) 
         // ... Al final  se ecribe el tipo de datos y tarea
         mapping (uint256 => Task) public tasks;
@@ -22,7 +28,13 @@
             taskCounter++;
         }
 
-        // function toggleDone(){}
+        function toggleDone(uint _id ) public {
+            // codigo del autor 
+            Task memory _task =tasks[_id];
+            _task.done = !_task.done ;   
+            tasks[_id] = _task;
+            //tasks[_id].done = !tasks[_id].done // .... creo 
+        }
 
     }
 

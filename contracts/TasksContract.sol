@@ -5,9 +5,17 @@
         uint public taskCounter = 0 ;
 
         constructor(){
-            createTask("mi primer tarea de ejemplo","Tengo que hacer alguito");
+            createTask("Primera Tarea","Algo para hacer");
         }
 
+        // Permite registrar la tarea en el log
+        event TaskCreated(            
+            uint id,
+            string title,
+            string description,
+            bool done,
+            uint createdAt
+        );
 
         // Creación de Tipo de dato                    
         struct Task{
@@ -24,8 +32,9 @@
 
         // Esto solo se guarda en memoria y se añade "memoery"
         function createTask(string memory _title, string  memory _description) public {
-            tasks[taskCounter]= Task(1, _title, _description, false, block.timestamp);
+            tasks[taskCounter]= Task(taskCounter, _title, _description, false, block.timestamp);
             taskCounter++;
+            emit TaskCreated(taskCounter, _title, _description, false, block.timestamp);
         }
 
         function toggleDone(uint _id ) public {

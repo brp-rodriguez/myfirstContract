@@ -10,12 +10,11 @@ contract("TasksContract", ()=>{
      // Primer caso de test 
      it('migrate deployed successfully', async()=>{
          const address = this.tasksContract.address 
-
          assert.notEqual(address,null);
          assert.notEqual(address,undefined);
          assert.notEqual(address,0x0);
          assert.notEqual(address,"");
-
+         
      })
      
      it('get Tasks List', async()=>{
@@ -26,7 +25,6 @@ contract("TasksContract", ()=>{
          assert.equal(task.description,"Algo para hacer")
          assert.equal(task.done,false)
          assert.equal(tasksCounter,1)
-
      })
 
      it("task created successfully", async()=>{

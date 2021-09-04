@@ -3,15 +3,14 @@
 
     contract TasksContract {  // Tares en Contrato
         uint public taskCounter = 0 ;
-
+        
         constructor(){
             createTask("Primera Tarea","Algo para hacer");
         }
-
         // Permite registrar la tarea en el log
         event TaskCreated(            
             uint id,
-            string title,
+            string tittle,
             string description,
             bool done,
             uint createdAt
@@ -20,7 +19,7 @@
         // Creación de Tipo de dato                    
         struct Task{
             uint256 id;
-            string title;
+            string tittle;
             string description;
             bool done;
             uint256 createdAt;
@@ -31,10 +30,10 @@
         // A los Task se puede acceder de 1 en 1 --> se vera en truffle console
 
         // Esto solo se guarda en memoria y se añade "memoery"
-        function createTask(string memory _title, string  memory _description) public {
-            tasks[taskCounter]= Task(taskCounter, _title, _description, false, block.timestamp);
+        function createTask(string memory _tittle, string  memory _description) public {
+            tasks[taskCounter]= Task(taskCounter, _tittle, _description, false, block.timestamp);
             taskCounter++;
-            emit TaskCreated(taskCounter, _title, _description, false, block.timestamp);
+            emit TaskCreated(taskCounter, _tittle, _description, false, block.timestamp);
         }
 
         function toggleDone(uint _id ) public {

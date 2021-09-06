@@ -24,6 +24,8 @@
             bool done;
             uint256 createdAt;
         } 
+        event TaskToggleDone(uint id, bool done);
+
         // Declaracción de funcion (Tipp de Datos) 
         // ... Al final  se ecribe el tipo de datos y tarea
         mapping (uint256 => Task) public tasks;
@@ -42,6 +44,7 @@
             _task.done = !_task.done ;   
             tasks[_id] = _task;
             //tasks[_id].done = !tasks[_id].done // .... creo 
+            emit TaskToggleDone(_id,_task.done);
         }
 
     }

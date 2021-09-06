@@ -21,7 +21,7 @@ contract("TasksContract", ()=>{
          const tasksCounter =await this.tasksContract.taskCounter()
          const task = await this.tasksContract.tasks(tasksCounter-1)         
          assert.equal(task.id.toNumber(),tasksCounter -1)
-         assert.equal(task.title,"Primera Tarea")
+         assert.equal(task.tittle,"Primera Tarea")
          assert.equal(task.description,"Algo para hacer")
          assert.equal(task.done,false)
          assert.equal(tasksCounter,1)
@@ -34,9 +34,18 @@ contract("TasksContract", ()=>{
         const tasksCounter =await this.tasksContract.taskCounter()
 
         assert.equal(tasksCounter,2);
-        assert.equal(taskEvent_extracted.id.toNumber(),2);
-        assert.equal(taskEvent_extracted.title,"Some Task");
+        assert.equal(taskEvent_extracted.id.toNumber(),2);   // Info del task Event
+        assert.equal(taskEvent_extracted.tittle,"Some Task");
         assert.equal(taskEvent_extracted.description,"Some Do");
         assert.equal(taskEvent_extracted.done,false);
+     })
+
+     it('task toggle done', async()=>{
+         const result = await this.tasksContract.toggleDone(1);
+         const taskEvent = result.logs[0].args;
+         const task = await this.tasksContract.tasks(1)
+         assert.equal(task.done,true);
+         assert.equal(taskEvent.done,true);
+         assert.equal(taskEvent.id,1);
      })
 })

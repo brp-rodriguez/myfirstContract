@@ -18,16 +18,16 @@
                     <h1>Dapp</h1>
                     <h6 class="text-muted">Decentralized Apps</h6>
                     <span>Wallet</span>
-                    <span>12312312312313123</span>
+                    <span id="account"></span>
                 </div>
 
-                <form class="card card-body bg-dark rounded-0">
+                <form class="card card-body bg-dark rounded-0" id="taskForm">
                     <h4>save a task</h4>
 
-                    <input type="text" placeholder="Write a Tasks ... "
+                    <input type="text" name="title" placeholder="Write a Tasks ... "
                                        class="form-control bg-dark text-white rounded-0 border-0 my-4">
 
-                    <textarea rows="2" class="form-control bg-dark text-white rounded-0 border-0 my-4"
+                    <textarea rows="2" name="description" class="form-control bg-dark text-white rounded-0 border-0 my-4"
                         placeholder="I have to write something here .."></textarea>
 
                     <button class="btn btn-primary">
@@ -36,15 +36,15 @@
                 </form>
             </div>
             <div class="col-md-8">
-                <div class="card bg-dark">
-                    tasks list
+                <div id="taskList">
+                    
                 </div>
             </div>
         </div>
     </div>
     <script src="./libs/@truffle/contract/dist/truffle-contract.min.js"></script>
     <script src="app.js"></script>
-    
+    <script src="ui.js"></script>
 </body>
 
 </html>
